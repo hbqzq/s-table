@@ -53,21 +53,14 @@ WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #pragma pack(4)
 
 enum {
-	STABLE_BLOCK_INVALID = 0,
-	STABLE_BLOCK_BEAN,
-	STABLE_BLOCK_ARRAY,
-	STABLE_BLOCK_BODY,
-};
-
-enum {
 	STABLE_NULL = 0,
 	STABLE_BOOL,
 	STABLE_INT8,
 	STABLE_INT16,
 	STABLE_INT32,
 	STABLE_INT64,
-	STABLE_FLOAT,
-	STABLE_DOUBLE,
+	STABLE_FLOAT,	//Just provide an float-point number type definition, 
+	STABLE_DOUBLE,	//different float-point calculation on different archs is not considered
 	STABLE_STRING,
 	STABLE_BEAN,
 	STABLE_ARRAY,

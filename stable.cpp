@@ -312,11 +312,11 @@ static stable_t stable_create(read_func_t reader) {
 			uint16_t strLength = 0;
 			for (uint32_t i = 0; i < count; i++) {
 				decode(reader, &strLength);
-				if (buffer_size < (size_t)strLength + 1) {
+				if (buffer_size < (size_t)strLength) {
 					do {
 						buffer_size <<= 1;
-						buffer = (char*)realloc(buffer, buffer_size);
-					} while (buffer_size < (size_t)strLength + 1);
+					} while (buffer_size < (size_t)strLength);
+					buffer = (char*)realloc(buffer, buffer_size);
 					if (!buffer) {
 						stable_delete(stable);
 						SET_ERRORCODE(STABLE_ERR_OUT_OF_MEM);
@@ -443,11 +443,13 @@ STABLE_API int stable_delete(stable_t stable) {
 
 	stable->map.clear();
 	stable->protos = NULL;
-	stable->beans == NULL;
+	stable->beans = NULL;
 	stable->arrays = NULL;
 	stable->body.data = NULL;
 	stable->body.size = 0;
 	stable->strings.clear();
+
+	stable_list[stable->index] = NULL;
 
 	return 0;
 }
