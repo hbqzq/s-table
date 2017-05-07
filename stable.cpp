@@ -26,7 +26,7 @@ WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 #include "stable.h"
 
-#define WRITER_BYTES_START_SIZE 4096
+#define WRITER_BYTES_START_SIZE 10240
 
 static int last_errorcode = STABLE_ERR_OK;
 
@@ -292,6 +292,8 @@ static stable_t stable_create(read_func_t reader) {
 			}
 			reader(body.data, body.size);
 			stable->body = body;
+
+			printf("body size: %d\n", body.size);
 
 			break;
 		}
